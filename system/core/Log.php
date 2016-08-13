@@ -206,7 +206,11 @@ class CI_Log {
 			$date = date($this->_date_fmt);
 		}
 
-		$message .= $this->_format_line($level, $date, $msg);
+
+		$input =& load_class('Input', 'core');
+		$ip_address = $input->ip_address();
+
+		$message .= $this->_format_line($level, $date, $msg, $ip_address);
 
 		for ($written = 0, $length = strlen($message); $written < $length; $written += $result)
 		{
@@ -238,10 +242,11 @@ class CI_Log {
 	 * @param	string	$level 	The error level
 	 * @param	string	$date 	Formatted date string
 	 * @param	string	$message 	The log message
+	 * @param  string  $ip_address The IP address
 	 * @return	string	Formatted log line with a new line character '\n' at the end
 	 */
-	protected function _format_line($level, $date, $message)
+	protected function _format_line($level, $date, $message, $ip_address)
 	{
-		return $level.' - '.$date.' --> '.$message."\n";
+		return "$level - $date $ip_address --> $message\n";
 	}
 }

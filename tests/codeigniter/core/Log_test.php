@@ -56,8 +56,8 @@ class Log_test extends CI_TestCase {
 		$format_line = new ReflectionMethod($instance, '_format_line');
 		$format_line->setAccessible(TRUE);
 		$this->assertEquals(
-			$format_line->invoke($instance, 'LEVEL', 'Timestamp', 'Message'),
-			"LEVEL - Timestamp --> Message\n"
+			$format_line->invoke($instance, 'LEVEL', 'Timestamp', 'Message', '127.0.0.1'),
+			"LEVEL - Timestamp 127.0.0.1 --> Message\n"
 		);
 	}
 }

@@ -481,6 +481,24 @@ if ( ! function_exists('log_message'))
 
 // ------------------------------------------------------------------------
 
+if ( ! function_exists('dd'))
+{
+	/**
+	 *
+	 * @param	string	the message
+	 * @return	void
+	 */
+	function dd($message)
+	{
+		var_dump($message);
+		echo "\n<hr />\n";
+		debug_print_backtrace();
+		die();
+	}
+}
+
+// ------------------------------------------------------------------------
+
 if ( ! function_exists('set_status_header'))
 {
 	/**
