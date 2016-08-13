@@ -47,6 +47,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		https://codeigniter.com/user_guide/libraries/config.html
  */
 class CI_Model {
+	/** @var CI_DB_query_builder */
+	public $zdb = null;// z is the first letter of my last name
+
+	/** @var string */
+	public $tableName = null;
 
 	/**
 	 * Class constructor
@@ -55,6 +60,8 @@ class CI_Model {
 	 */
 	public function __construct()
 	{
+		$this->load->database();
+		$this->zdb = $this->db;
 		log_message('info', 'Model Class Initialized');
 	}
 
@@ -75,6 +82,11 @@ class CI_Model {
 		//	saying 'Undefined Property: system/core/Model.php', it's
 		//	most likely a typo in your model code.
 		return get_instance()->$key;
+	}
+	
+	public function getQueryBuilder()
+	{
+		return $this->zdb->from($this->tableName);
 	}
 
 }

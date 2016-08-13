@@ -160,6 +160,8 @@ class CI_Controller {
 		
 		require_once(APPPATH.'services/'.$name.'.php');
 		$_services[$name] = isset($param) ? new $name($param) : new $name();
+
+		$_services[$name]->setController($this);
 		
 		return $_services[$name];
 	}
