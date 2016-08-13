@@ -141,4 +141,27 @@ class CI_Controller {
 		return $this;
 	}
 
+	/**
+	 * @param $name
+	 * @param null $param
+	 * @return mixed
+	 */
+	public function loadService($name, $param = null)
+	{
+		load_class('Service', 'core');
+		
+		static $_services= array();
+
+		// Does the class exist? If so, we're done...
+		if (isset($_services[$name]))
+		{
+			return $_services[$name];
+		}
+		
+		require_once(APPPATH.'services/'.$name.'.php');
+		$_services[$name] = isset($param) ? new $name($param) : new $name();
+		
+		return $_services[$name];
+	}
+
 }
