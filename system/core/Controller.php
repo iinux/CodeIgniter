@@ -93,4 +93,52 @@ class CI_Controller {
 		return self::$instance;
 	}
 
+	/**
+	 * @var Smarty
+	 */
+	protected $smarty = null;
+
+	/**
+	 * @return $this
+	 */
+	public function smartyLoad()
+	{
+		$this->load->library('CI_Smarty');
+		$this->smarty = $this->ci_smarty;
+		
+		return $this;
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $value
+	 * @return $this
+	 */
+	public function smartyAssign($name, $value)
+	{
+		if (empty($this->smarty)) {
+			$this->smartyLoad();
+		}
+		
+		$this->smarty->assign($name, $value);
+		
+		return $this;
+	}
+
+	/**
+	 * @param string $fileName
+	 * @param string $extensionName
+	 * @return $this
+	 */
+	public function smartyDisplay($fileName, $extensionName = 'tpl')
+	{
+		if (empty($this->smarty)) {
+			$this->smartyLoad();
+		}
+		
+		$this->smarty->display("$fileName.$extensionName");
+		
+		return $this;
+	}
+
 }
