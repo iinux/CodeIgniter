@@ -166,4 +166,32 @@ class CI_Controller {
 		return $_services[$name];
 	}
 
+	/**
+	 * @return CI_Session
+	 */
+	protected function session()
+	{
+		static $session = null;
+		if (empty($session)) {
+			$this->load->library('session');
+			$session = $this->session;
+		}
+		return $session;
+	}
+
+	/**
+	 * @return CI_Input
+	 */
+	protected function input()
+	{
+		return $this->input;
+	}
+
+	protected function outputJson($arr)
+	{
+		$this->output
+			  ->set_content_type('application/json')
+			  ->set_output(json_encode($arr));
+	}
+
 }
