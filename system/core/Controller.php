@@ -49,6 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/general/controllers.html
  */
+
+/**
+ * Class CI_Controller
+ * @property  CI_Input $input
+ * @property  CI_Benchmark $benchmark
+ * @property  CI_Config $config
+ * @property  CI_Output $output
+ * @property  CI_URI $uri
+ */
 class CI_Controller {
 
 	/**
@@ -177,14 +186,6 @@ class CI_Controller {
 			$session = $this->session;
 		}
 		return $session;
-	}
-
-	/**
-	 * @return CI_Input
-	 */
-	protected function input()
-	{
-		return $this->input;
 	}
 
 	protected function outputJson($arr)
