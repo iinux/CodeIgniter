@@ -45,10 +45,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @category	Libraries
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/libraries/config.html
+ * @property CI_DB_query_builder $db
  */
 class CI_Model {
-	/** @var CI_DB_query_builder */
-	public $zdb = null;// z is the first letter of my last name
 
 	/** @var string */
 	public $tableName = null;
@@ -61,7 +60,6 @@ class CI_Model {
 	public function __construct()
 	{
 		$this->load->database();
-		$this->zdb = $this->db;
 		log_message('info', 'Model Class Initialized');
 	}
 
@@ -86,7 +84,7 @@ class CI_Model {
 	
 	public function getQueryBuilder()
 	{
-		return $this->zdb->from($this->tableName);
+		return $this->db->from($this->tableName);
 	}
 
 }
