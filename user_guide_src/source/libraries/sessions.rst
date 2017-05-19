@@ -471,7 +471,7 @@ Preference         Default         Description
 
 .. note:: The 'cookie_httponly' setting doesn't have an effect on sessions.
 	Instead the HttpOnly parameter is always enabled, for security
-	reasons. Additionaly, the 'cookie_prefix' setting is completely
+	reasons. Additionally, the 'cookie_prefix' setting is completely
 	ignored.
 
 Session Drivers
@@ -594,7 +594,7 @@ And then of course, create the database table ...
 For MySQL::
 
 	CREATE TABLE IF NOT EXISTS `ci_sessions` (
-		`id` varchar(40) NOT NULL,
+		`id` varchar(128) NOT NULL,
 		`ip_address` varchar(45) NOT NULL,
 		`timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
 		`data` blob NOT NULL,
@@ -604,7 +604,7 @@ For MySQL::
 For PostgreSQL::
 
 	CREATE TABLE "ci_sessions" (
-		"id" varchar(40) NOT NULL,
+		"id" varchar(128) NOT NULL,
 		"ip_address" varchar(45) NOT NULL,
 		"timestamp" bigint DEFAULT 0 NOT NULL,
 		"data" text DEFAULT '' NOT NULL

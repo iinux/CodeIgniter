@@ -291,12 +291,14 @@ class Loader_test extends CI_TestCase {
 		$this->assertEquals($content.$value, $out);
 
 		// Mock output class
-		$output = $this->getMock('CI_Output', array('append_output'));
+		$output = $this->getMockBuilder('CI_Output')->setMethods(array('append_output'))->getMock();
 		$output->expects($this->once())->method('append_output')->with($content.$value);
 		$this->ci_instance_var('output', $output);
 
-		// Test view output
-		$this->assertInstanceOf('CI_Loader', $this->load->view($view, array($var => $value)));
+		// Test view output and $vars as an object
+		$vars = new stdClass();
+		$vars->$var = $value;
+		$this->assertInstanceOf('CI_Loader', $this->load->view($view, $vars));
 	}
 
 	// --------------------------------------------------------------------
@@ -441,7 +443,7 @@ class Loader_test extends CI_TestCase {
 	{
 		// Mock lang class and test load call
 		$file = 'test';
-		$lang = $this->getMock('CI_Lang', array('load'));
+		$lang = $this->getMockBuilder('CI_Lang')->setMethods(array('load'))->getMock();
 		$lang->expects($this->once())->method('load')->with($file);
 		$this->ci_instance_var('lang', $lang);
 		$this->assertInstanceOf('CI_Loader', $this->load->language($file));

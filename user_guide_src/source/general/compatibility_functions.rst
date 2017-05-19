@@ -10,7 +10,7 @@ Being custom implementations, these functions will also have some
 set of dependencies on their own, but are still useful if your
 PHP setup doesn't offer them natively.
 
-.. note:: Much like the `common functions <common_functions>`, the
+.. note:: Much like the :doc:`common functions <common_functions>`, the
 	compatibility functions are always available, as long as
 	their dependencies are met.
 
@@ -32,7 +32,6 @@ that is otherwise available only since PHP 5.5.
 Dependencies
 ============
 
-- PHP 5.3.7
 - ``CRYPT_BLOWFISH`` support for ``crypt()``
 
 Constants
@@ -221,12 +220,3 @@ Function reference
 
 	For more information, please refer to the `PHP manual for
 	array_column() <http://php.net/array_column>`_.
-
-.. php:function:: hex2bin($data)
-
-	:param	array	$data: Hexadecimal representation of data
-	:returns:	Binary representation of the given data
-	:rtype:	string
-
-	For more information, please refer to the `PHP manual for hex2bin()
-	<http://php.net/hex2bin>`_.

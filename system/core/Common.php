@@ -154,14 +154,13 @@ if ( ! function_exists('load_class'))
 		// then in the native system/libraries folder
 		foreach (array(APPPATH, BASEPATH) as $path)
 		{
-			$file = $path.$directory.'/'.$class.'.php';
-			if (file_exists($file))
+			if (file_exists($path.$directory.'/'.$class.'.php'))
 			{
 				$name = 'CI_'.$class;
 
 				if (class_exists($name, FALSE) === FALSE)
 				{
-					require_once($file);
+					require_once($path.$directory.'/'.$class.'.php');
 				}
 
 				break;
@@ -487,17 +486,14 @@ if ( ! function_exists('dd'))
 	/**
 	 *
 	 * @param	string	the message
-	 * @param bool 
 	 * @return	void
 	 */
-	function dd($message, $die = true)
+	function dd($message)
 	{
 		var_dump($message);
 		echo "\n<hr />\n";
 		debug_print_backtrace();
-		if ($die) {
-			die();
-		}
+		die();
 	}
 }
 
