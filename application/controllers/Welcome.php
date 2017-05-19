@@ -20,6 +20,16 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//log_message('info', 'hello world');
+		
+		//$this->log->write_log('info', 'hello world');
+		
+		//var_dump($this->loadService('UserService')->getUser());
+		
+		//$this->outputJson(['a'=>'b']);
+		
+		$this->smartyAssign('name', 'Jerry');
+		$this->smartyDisplay('smarty_test');
+		return;
 	}
 }
